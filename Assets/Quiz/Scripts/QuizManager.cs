@@ -6,13 +6,16 @@ using TMPro;
 public class QuizManager : MonoBehaviour
 {
     [SerializeField] private QuizUI quizUI;
-    [SerializeField]
+    [SerializeField] private QuizDataScriptable quizData;
+
     private List<Question> questions;
 
     private Question selectedQuestion;
 
     private void Start()
     {
+        questions = quizData.questions;
+
         SelectQuestion();
     }
 
@@ -53,7 +56,7 @@ public class Question
     public AudioClip questionClip;
     public UnityEngine.Video.VideoClip questionVideo;
 
-    [Header("Option and anser Details")]
+    [Header("Option and answer Details")]
     public List<string> options;
     public string correctAns;
 }

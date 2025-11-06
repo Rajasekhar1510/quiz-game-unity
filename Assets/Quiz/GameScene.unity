@@ -150,14 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quizUI: {fileID: 1350475422}
-  questions:
-  - questionInfo: 
-    questionType: 0
-    questionImg: {fileID: 0}
-    questionClip: {fileID: 0}
-    questionVideo: {fileID: 0}
-    options: []
-    correctAns: 
+  quizData: {fileID: 11400000, guid: 71ebd683d24bac9468e6d333ceece7e7, type: 2}
 --- !u!4 &194222354
 Transform:
   m_ObjectHideFlags: 0
@@ -1413,7 +1406,11 @@ MonoBehaviour:
   correctCol: {r: 0.21568629, g: 0.25882354, b: 0.32941177, a: 1}
   wrongCol: {r: 0.6754716, g: 0, b: 0, a: 1}
   normalCol: {r: 0.12461924, g: 0.6415094, b: 0, a: 1}
-  options: []
+  options:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1505699085
 GameObject:
   m_ObjectHideFlags: 0

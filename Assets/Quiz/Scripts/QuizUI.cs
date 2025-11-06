@@ -21,6 +21,15 @@ public class QuizUI : MonoBehaviour
     private bool answered;
     private float audioLength;
 
+    private void Awake()
+    {
+        for (int i = 0; i < options.Count; i++)
+        {
+            Button localBtn = options[i];
+            localBtn.onClick.AddListener(() => OnClick(localBtn));
+        }
+    }
+
     public void SetQuestion(Question question)
     {
         this.question = question;
@@ -106,6 +115,15 @@ public class QuizUI : MonoBehaviour
         {
             answered = true;
             bool val = quizManager.Answer(button.name);
+
+            if (val)
+            {
+                button.image.color = correctCol;
+            }
+            else
+            {
+                button.image.color = wrongCol;
+            }
         }
     }
 }
