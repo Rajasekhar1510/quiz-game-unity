@@ -1398,19 +1398,14 @@ MonoBehaviour:
   questionImage: {fileID: 1654299305}
   questionVideo: {fileID: 1977704749}
   questionAudio: {fileID: 495764430}
-  questionButtons:
+  options:
   - {fileID: 2085437810}
   - {fileID: 347551900}
   - {fileID: 1318356621}
   - {fileID: 1507952085}
-  correctCol: {r: 0.21568629, g: 0.25882354, b: 0.32941177, a: 1}
+  correctCol: {r: 0.20334375, g: 1, b: 0, a: 1}
   wrongCol: {r: 0.6754716, g: 0, b: 0, a: 1}
-  normalCol: {r: 0.12461924, g: 0.6415094, b: 0, a: 1}
-  options:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  normalCol: {r: 0.21568629, g: 0.25882354, b: 0.32941177, a: 1}
 --- !u!1 &1505699085
 GameObject:
   m_ObjectHideFlags: 0

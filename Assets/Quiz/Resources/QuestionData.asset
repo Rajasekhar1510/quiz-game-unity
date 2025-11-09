@@ -23,7 +23,7 @@ MonoBehaviour:
     - Dog
     - Rat
     - Mat
-    correctAns: 0
+    correctAns: Cat
   - questionInfo: What is this
     questionType: 1
     questionImg: {fileID: 21300000, guid: c0bb50585e74c4e42afe23172c92e36f, type: 3}
@@ -34,4 +34,4 @@ MonoBehaviour:
     - rat
     - Elephant
     - Lion
-    correctAns: 2
+    correctAns: Elephant
