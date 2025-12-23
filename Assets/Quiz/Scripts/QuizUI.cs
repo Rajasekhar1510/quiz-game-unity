@@ -5,21 +5,29 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections;
 using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
 
 public class QuizUI : MonoBehaviour
 {
     [SerializeField] private QuizManager quizManager;
-    [SerializeField] private TextMeshProUGUI questionText;
+    [SerializeField] private TextMeshProUGUI questionText, scoreText, timerText;
+    [SerializeField] private List<Image> lifeImageList;
+    [SerializeField] private GameObject gameOverPanel, mainMenuPanel, gameMenuPanel;
     [SerializeField] private Image questionImage;
     [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo;
     [SerializeField] private AudioSource questionAudio;
-    [SerializeField] private List<Button> options;
+    [SerializeField] private List<Button> options, uiButtons;
     //[SerializeField] private List<Button> questionButtons;
     [SerializeField] private Color correctCol, wrongCol, normalCol;
 
     private Question question;
     private bool answered;
     private float audioLength;
+
+    public TextMeshProUGUI ScoreText { get {  return scoreText; } }
+    public TextMeshProUGUI TimerText { get {  return timerText; } }
+
+    public GameObject GameOverPanel { get { return gameOverPanel; } }
 
     private void Awake()
     {
@@ -28,6 +36,13 @@ public class QuizUI : MonoBehaviour
             Button localBtn = options[i];
             localBtn.onClick.AddListener(() => OnClick(localBtn));
         }
+
+        for (int i = 0; i < uiButtons.Count; i++)
+        {
+            Button localBtn = uiButtons[i];
+            localBtn.onClick.AddListener(() => OnClick(localBtn));
+        }
+        
     }
 
     public void SetQuestion(Question question)
@@ -111,19 +126,52 @@ public class QuizUI : MonoBehaviour
 
     private void OnClick(Button button)
     {
-        if (!answered)
+        if (quizManager.GameStatus == GameStatus.Playing)
         {
-            answered = true;
-            bool val = quizManager.Answer(button.name);
+            if (!answered)
+            {
+                answered = true;
+                bool val = quizManager.Answer(button.name);
 
-            if (val)
-            {
-                button.image.color = correctCol;
-            }
-            else
-            {
-                button.image.color = wrongCol;
+                if (val)
+                {
+                    button.image.color = correctCol;
+                }
+                else
+                {
+                    button.image.color = wrongCol;
+                }
             }
         }
+
+        switch (button.name)
+        {
+            case "Animal":
+                quizManager.StartGame(0);
+                mainMenuPanel.SetActive(false);
+                gameMenuPanel.SetActive(true);
+                break;
+            case "Bird":
+                quizManager.StartGame(1);
+                mainMenuPanel.SetActive(false);
+                gameMenuPanel.SetActive(true);
+                break;
+            case "Mix":
+                quizManager.StartGame(2);
+                mainMenuPanel.SetActive(false);
+                gameMenuPanel.SetActive(true);
+                break;
+        }
+
+    }
+
+    public void RetryButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ReduceLife(int index)
+    {
+        lifeImageList[index].color = wrongCol;
     }
 }
